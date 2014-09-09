@@ -11,5 +11,8 @@
     <string name="party_type">Party Type</string>
 	<string name="call_me">Call Me</string>
 	<string name="contact_me">Contact Me</string>
+	<string name="share_generic">Share</string>
+	<string name="share_twitter">Get Support @Twitter</string>
+	<string name="share_facebook">Get Support @Facebook</string>
 
 </resources>

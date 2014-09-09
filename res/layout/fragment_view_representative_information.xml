@@ -36,6 +36,7 @@
 	        android:id="@+id/representative_details_name"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
 	        android:gravity="center"
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
     
@@ -53,6 +54,7 @@
 	        android:id="@+id/representative_details_phone"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
 	        android:gravity="center"
 	        android:text="@string/call_me" />    
 	
@@ -60,9 +62,35 @@
 	        android:id="@+id/representative_details_website"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
 	        android:gravity="center"
 	        android:text="@string/contact_me" />  
 	        
 	</TableRow>
+	
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:paddingTop="50dip">  
+        
+	    <Button
+	        android:id="@+id/share_twitter"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="@string/share_twitter" />    
+	
+	    <Button
+	        android:id="@+id/share_facebook"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="@string/share_facebook" />  
+	        
+	</TableRow>    
     
 </TableLayout>

@@ -26,40 +26,39 @@ public class RepresentativeInfoFragment extends Fragment {
 		return repInfo;
 	}	
 
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View fragmentTemp = inflater.inflate(R.layout.fragment_view_representative_information, container, false);
 		
 		Representative repObjTemp = (Representative) getArguments().getSerializable(REPRESENTATIVE_INFO);
 		if(repObjTemp!=null) {
-			
-			String districtTemp = repObjTemp.getDistrict();
-			String prependText = "Rep. " ;
-			if(districtTemp.equalsIgnoreCase("Junior Seat") || districtTemp.equalsIgnoreCase("Senior Seat")) {
-				prependText = "Sen. ";
-			}
-			
-			bindImageToField(fragmentTemp, R.id.representative_details_party, repObjTemp.getParty());
-			bindValueToField(fragmentTemp, R.id.representative_details_name, prependText + repObjTemp.getName());
-//			bindValueToField(fragmentTemp, R.id.representative_details_state, repObjTemp.getState());
-//			bindValueToField(fragmentTemp, R.id.representative_details_district, repObjTemp.getDistrict());
-			bindPhoneCallToField(fragmentTemp, R.id.representative_details_phone, repObjTemp.getPhone());
-			bindOpenWebsiteToField(fragmentTemp, R.id.representative_details_website, repObjTemp.getWebsite());
+			bindPartyImage(fragmentTemp, R.id.representative_details_party, repObjTemp.getParty());
+			bindName(fragmentTemp, R.id.representative_details_name, repObjTemp.getDistrict(), repObjTemp.getName());
+			bindPhoneCall(fragmentTemp, R.id.representative_details_phone, repObjTemp.getPhone());
+			bindOpenWebsite(fragmentTemp, R.id.representative_details_website, repObjTemp.getWebsite());
+			bindShareButtons(fragmentTemp, R.id.share_twitter);
+			bindShareButtons(fragmentTemp, R.id.share_facebook);
 		}
 		
-		return fragmentTemp;
+		return fragmentTemp;		
 	}
 	
-	public void bindValueToField(View fragmentViewInput, int fieldName, String valueToBind) {
+	public void bindName(View fragmentViewInput, int fieldName, String districtInput, String nameInput) {
 		TextView fieldOnScreenTemp;
+
+		String prependText = "Rep. " ;
+		if(districtInput.equalsIgnoreCase("Junior Seat") || districtInput.equalsIgnoreCase("Senior Seat")) {
+			prependText = "Sen. ";
+		}
+		
 		fieldOnScreenTemp = (TextView) fragmentViewInput.findViewById(fieldName);
 		if(fieldOnScreenTemp!=null) {
-			fieldOnScreenTemp.setText(valueToBind);
+			fieldOnScreenTemp.setText(prependText + nameInput);
 		}
 	}
 	
-	public void bindImageToField(View fragmentViewInput, int fieldName, String valueToBind) {
+	public void bindPartyImage(View fragmentViewInput, int fieldName, String valueToBind) {
 		ImageView fieldOnScreenTemp;
+		
 		fieldOnScreenTemp = (ImageView) fragmentViewInput.findViewById(fieldName);
 		if(fieldOnScreenTemp!=null) {
 			if(valueToBind.equalsIgnoreCase("R")) {
@@ -71,12 +70,11 @@ public class RepresentativeInfoFragment extends Fragment {
 		}
 	}
 	
-	public void bindPhoneCallToField(View fragmentViewInput, int fieldName, final String valueToBind) {
+	public void bindPhoneCall(View fragmentViewInput, int fieldName, final String valueToBind) {
 		Button fieldOnScreenTemp;
 		fieldOnScreenTemp = (Button) fragmentViewInput.findViewById(fieldName);
 		if(fieldOnScreenTemp!=null) {
 			fieldOnScreenTemp.setOnClickListener(new OnClickListener() {
-				  @Override
 				  public void onClick(View v) {
 				    Intent i=new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + valueToBind));
 				    startActivity(i);
@@ -85,16 +83,46 @@ public class RepresentativeInfoFragment extends Fragment {
 		}
 	}	
 	
-	public void bindOpenWebsiteToField(View fragmentViewInput, int fieldName, final String valueToBind) {
+	public void bindOpenWebsite(View fragmentViewInput, int fieldName, final String valueToBind) {
 		Button fieldOnScreenTemp;
 		fieldOnScreenTemp = (Button) fragmentViewInput.findViewById(fieldName);
 		if(fieldOnScreenTemp!=null) {
 			fieldOnScreenTemp.setOnClickListener(new OnClickListener() {
-				  @Override
 				  public void onClick(View v) {
 				    Uri uri = Uri.parse(valueToBind);
 				    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 				    startActivity(intent);
+				  }
+				});
+		}
+	}
+	
+	public void bindShareButtons(View fragmentViewInput, int fieldName) {
+		Button fieldOnScreenTemp;
+		fieldOnScreenTemp = (Button) fragmentViewInput.findViewById(fieldName);
+		if(fieldOnScreenTemp!=null) {
+			fieldOnScreenTemp.setOnClickListener(new OnClickListener() {
+				  public void onClick(View v) {
+					//create the send intent
+					  Intent shareIntent = 
+					   new Intent(android.content.Intent.ACTION_SEND);
+
+					  //set the type
+					  shareIntent.setType("text/plain");
+
+					  //add a subject
+					  shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Testing Extra Subject!");
+
+					  //build the body of the message to be shared
+					  String shareMessage = "Testing Share Functionality";
+
+					  //add the message
+					  shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
+
+					  //start the chooser for sharing
+					  startActivity(Intent.createChooser(shareIntent, "Get Support For Your Cause!"));
+
+
 				  }
 				});
 		}
