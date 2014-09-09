@@ -1,17 +1,23 @@
-package net.sharathkumar.android.apps.knowthysenator.helpers;
+package net.sharathkumar.android.apps.knowthyrepresentative.helpers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.util.ArrayList;
 
-import net.sharathkumar.android.apps.knowthysenator.KnowThySenatorApplicationContext;
+import net.sharathkumar.android.apps.knowthyrepresentative.KnowThySenatorApplicationContext;
+import net.sharathkumar.android.apps.knowthyrepresentative.activities.ViewRepresentativeInformationActivity;
+import net.sharathkumar.android.apps.knowthyrepresentative.actors.Representative;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -24,9 +30,12 @@ public class AsyncHttpRequest extends AsyncTask<String, Void, String> implements
 	 */
 	private static final long serialVersionUID = 1L;
 	private String outputOfHttpRequest = "";
+	private ArrayList<Representative> listOfRepresentatives = new ArrayList<Representative>();
 	private String UrlToQuery = "http://whoismyrepresentative.com/getall_mems.php?output=json&zip=";
+	private Activity invokingActivity;
 	
-	public AsyncHttpRequest(String inputZipCode) {
+	public AsyncHttpRequest(Activity invokingActivityInput, String inputZipCode) {
+		invokingActivity = invokingActivityInput;
 		UrlToQuery+=inputZipCode;
 	}
 	
@@ -89,8 +98,13 @@ public class AsyncHttpRequest extends AsyncTask<String, Void, String> implements
 	}
 
 	protected void onPostExecute(String result) {
-		ResultsParser.parseJson(result);
 		setOutput(result);
+		listOfRepresentatives = ResultsParser.parseJson(result);
+				
+		Intent displayResultsPageIntent = new Intent(invokingActivity, ViewRepresentativeInformationActivity.class) ;
+		displayResultsPageIntent.putExtra("LIST_OF_REPRESENTATIVES", listOfRepresentatives);
+		invokingActivity.startActivity(displayResultsPageIntent) ;
+		
         Log.d("AsyncHttpRequest.onPostExecute() :: result", result);
    }
 

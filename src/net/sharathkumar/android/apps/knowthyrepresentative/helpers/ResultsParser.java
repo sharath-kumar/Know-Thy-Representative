@@ -1,16 +1,17 @@
-package net.sharathkumar.android.apps.knowthysenator.helpers;
+package net.sharathkumar.android.apps.knowthyrepresentative.helpers;
 
-import java.util.Vector;
-import net.sharathkumar.android.apps.knowthysenator.actors.Representative;
+import java.util.ArrayList;
+import net.sharathkumar.android.apps.knowthyrepresentative.actors.Representative;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.util.Log;
 
 public class ResultsParser {
 	
-	public static Vector<Representative> parseJson(String dataToParse) {
-		Vector<Representative> returnValue = new Vector<Representative>();
+	public static ArrayList<Representative> parseJson(String dataToParse) {
+		ArrayList<Representative> returnValue = new ArrayList<Representative>();
 		
 		try {
 			

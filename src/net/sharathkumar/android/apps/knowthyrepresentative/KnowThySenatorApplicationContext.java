@@ -1,4 +1,4 @@
-package net.sharathkumar.android.apps.knowthysenator;
+package net.sharathkumar.android.apps.knowthyrepresentative;
 
 import android.app.Application;
 import android.content.Context;

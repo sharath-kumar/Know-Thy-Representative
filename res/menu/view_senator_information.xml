@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="net.sharathkumar.android.apps.knowthysenator.activities.ViewSenatorInformation" >
+    tools:context="net.sharathkumar.android.apps.knowthyrepresentative.activities.ViewRepresentativeInformationActivity" >
 
     <item
         android:id="@+id/action_settings"

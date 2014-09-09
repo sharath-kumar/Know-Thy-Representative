@@ -1,12 +1,16 @@
-package net.sharathkumar.android.apps.knowthysenator.actors;
+package net.sharathkumar.android.apps.knowthyrepresentative.actors;
+
+import java.io.Serializable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.util.Log;
 
-public class Representative implements RepresentativeAttributes {
+public class Representative implements RepresentativeAttributes, Serializable {
 	
 	private String name;
+	private String party;
 	private String state;
 	private String district;
 	private String phone;
@@ -17,6 +21,7 @@ public class Representative implements RepresentativeAttributes {
 		try {
 			// Too much paranoia?
 			name = (jsonInput.getString(TAG_NAME)!=null) ? (jsonInput.getString(TAG_NAME)) : "" ;
+			party = (jsonInput.getString(TAG_PARTY)!=null) ? (jsonInput.getString(TAG_PARTY)) : "" ;
 			state = (jsonInput.getString(TAG_STATE)!=null) ? (jsonInput.getString(TAG_STATE)) : "" ;
 			district = (jsonInput.getString(TAG_DISTRICT)!=null) ? (jsonInput.getString(TAG_DISTRICT)) : "" ;
 			phone = (jsonInput.getString(TAG_PHONE)!=null) ? (jsonInput.getString(TAG_PHONE)) : "" ;
@@ -33,6 +38,15 @@ public class Representative implements RepresentativeAttributes {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getParty() {
+		return party;
+	}
+
+	@Override
+	public void setParty(String party) {
+		this.party = party;
 	}
 
 	public String getState() {
@@ -109,4 +123,5 @@ public class Representative implements RepresentativeAttributes {
 		
 		return returnValue.toString();
 	}
+	
 }
