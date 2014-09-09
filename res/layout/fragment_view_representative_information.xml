@@ -1,56 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="@drawable/resultspageborder"
+    >
 
-    <TextView
-        android:id="@+id/representative_details_name"
+    <TableRow
+        android:id="@+id/tableRow1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center"
+        android:paddingTop="50dip">
+        
+	    <ImageView
+	        android:id="@+id/representative_details_party"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:contentDescription="@string/party_type"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+    </TableRow>
 
-    <TextView
-        android:id="@+id/representative_details_party"
+    <TableRow
+        android:id="@+id/tableRow2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/representative_details_state"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/representative_details_district"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/representative_details_phone"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />    
+        android:gravity="center"
+        android:paddingTop="50dip">    
+        
+	    <TextView
+	        android:id="@+id/representative_details_name"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
     
-    <TextView
-        android:id="@+id/representative_details_office"
+	</TableRow>
+	
+    
+    <TableRow
+        android:id="@+id/tableRow3"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/representative_details_website"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />  
-          
-</LinearLayout>
+        android:gravity="center"
+        android:paddingTop="50dip">  
+        
+	    <Button
+	        android:id="@+id/representative_details_phone"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:gravity="center"
+	        android:text="@string/call_me" />    
+	
+	    <Button
+	        android:id="@+id/representative_details_website"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:gravity="center"
+	        android:text="@string/contact_me" />  
+	        
+	</TableRow>
+    
+</TableLayout>
