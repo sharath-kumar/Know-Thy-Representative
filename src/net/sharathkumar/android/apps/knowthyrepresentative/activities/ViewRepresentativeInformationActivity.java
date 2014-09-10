@@ -1,6 +1,9 @@
 package net.sharathkumar.android.apps.knowthyrepresentative.activities;
 
 import java.util.ArrayList;
+
+import com.viewpagerindicator.CirclePageIndicator;
+
 import net.sharathkumar.android.apps.knowthyrepresentative.R;
 import net.sharathkumar.android.apps.knowthyrepresentative.actors.Representative;
 import android.support.v4.app.FragmentActivity;
@@ -10,6 +13,7 @@ import android.support.v4.view.ViewPager;
 
 public class ViewRepresentativeInformationActivity extends FragmentActivity {
 	RepresentativeInfoPageAdapter repInfoPageAdapter;
+	CirclePageIndicator circleIndicator;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,10 @@ public class ViewRepresentativeInformationActivity extends FragmentActivity {
 		repInfoPageAdapter = new RepresentativeInfoPageAdapter(getSupportFragmentManager(), fragments);
 		ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
 		pager.setAdapter(repInfoPageAdapter);
+		
+//		System.out.println("Indicator -> " + findViewById(R.id.indicator));
+		circleIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
+		circleIndicator.setViewPager(pager);
 	}
 
 	@SuppressWarnings("unchecked")

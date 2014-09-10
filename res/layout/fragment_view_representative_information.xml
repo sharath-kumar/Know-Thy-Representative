@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/resultspageborder"
     android:orientation="vertical"
-    android:stretchColumns="1"
-    android:padding="30dp" >
+    android:padding="30dp"
+    android:stretchColumns="1" >
 
-    <TableRow 
+    <TableRow
         android:id="@+id/tableRow1"
-    	android:paddingTop="50dp"
-    	android:gravity="center" >
+        android:gravity="center"
+        android:paddingTop="50dp" >
 
         <ImageView
             android:id="@+id/representative_details_party"
@@ -22,52 +22,62 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </TableRow>
 
-    <TableRow 
-        android:id="@+id/tableRow2"    	
-        android:paddingTop="50dp"
-    	android:gravity="center" >
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:gravity="center"
+        android:paddingTop="50dp" >
 
         <TextView
             android:id="@+id/representative_details_name"
-			android:layout_weight="1"
-			android:layout_width="0dip"
-			android:layout_height="wrap_content"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </TableRow>
 
-    <TableRow 
+    <TableRow
         android:id="@+id/tableRow3"
-        android:paddingTop="50dp"
-    	android:gravity="center" >
-        
+        android:gravity="center"
+        android:paddingTop="50dp" >
+
         <Button
             android:id="@+id/representative_details_website"
-			android:layout_weight="1"
-			android:layout_width="0dip"
-			android:layout_height="wrap_content"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/contact_me" />
 
         <Button
             android:id="@+id/representative_details_phone"
-			android:layout_weight="1"
-			android:layout_width="0dip"
-			android:layout_height="wrap_content"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/call_me" />
-
     </TableRow>
 
-    <TableRow 
-        android:id="@+id/tableRow4" 
-        android:paddingTop="50dp"
-    	android:gravity="center" >
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:gravity="center"
+        android:paddingTop="50dp" >
 
         <Button
             android:id="@+id/share_with_friends"
-			android:layout_weight="1"
-			android:layout_width="0dip"
-			android:layout_height="wrap_content"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/share_generic" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:gravity="center"
+        android:paddingTop="50dp" >
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/titles"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
     </TableRow>
 
 </TableLayout>
