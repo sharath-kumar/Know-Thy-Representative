@@ -6,6 +6,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import net.sharathkumar.android.apps.knowthyrepresentative.R;
 import net.sharathkumar.android.apps.knowthyrepresentative.actors.Representative;
+import net.sharathkumar.android.apps.knowthyrepresentative.helpers.GenericHelper;
 import android.support.v4.app.FragmentActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,9 @@ public class ViewRepresentativeInformationActivity extends FragmentActivity {
 //		System.out.println("Indicator -> " + findViewById(R.id.indicator));
 		circleIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
 		circleIndicator.setViewPager(pager);
+		
+		// Setup New Relic For App Diagnostics
+		GenericHelper.setupDiagnostics(this);
 	}
 
 	@SuppressWarnings("unchecked")

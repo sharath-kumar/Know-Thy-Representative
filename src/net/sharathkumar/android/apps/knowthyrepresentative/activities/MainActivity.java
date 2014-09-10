@@ -8,8 +8,7 @@ import android.widget.EditText;
 import net.sharathkumar.android.apps.knowthyrepresentative.R;
 import net.sharathkumar.android.apps.knowthyrepresentative.helpers.AsyncHttpRequest;
 import net.sharathkumar.android.apps.knowthyrepresentative.helpers.AsyncZipCodeLocator;
-import net.sharathkumar.android.utils.exceptions.RatingsException;
-import net.sharathkumar.android.utils.ratings.RateThisApp;
+import net.sharathkumar.android.apps.knowthyrepresentative.helpers.GenericHelper;
 import android.app.Activity;
 
 public class MainActivity extends Activity {
@@ -27,7 +26,11 @@ public class MainActivity extends Activity {
 			Log.e("Exception encountered while Autofinding Zip Code.", err.getLocalizedMessage());
 		}
 		
-		rateThisApp();
+		// Setup App Ratings
+		GenericHelper.rateThisApp(this);
+		
+		// Setup New Relic For App Diagnostics
+		GenericHelper.setupDiagnostics(this);
 	}
 	
 	public void searchForRepresentativeButtonClicked(View buttonClicked) {
@@ -42,14 +45,6 @@ public class MainActivity extends Activity {
 		else {
 			zipCodeEntryField.setError("Please enter a valid Zip Code.");
 		}
-	}
-	
-	public void rateThisApp() {
-	    try {
-	        RateThisApp.appLaunched(this, "Know Thy Representative", "net.sharathkumar.android.apps.knowthyrepresentative");
-	    } catch (RatingsException err) {
-	        Log.e("MainActivity.rateThisApp()", err.getLocalizedMessage());
-	    }
 	}
 
 }

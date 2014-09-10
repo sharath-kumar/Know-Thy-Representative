@@ -1,6 +1,9 @@
 package net.sharathkumar.android.apps.knowthyrepresentative.helpers;
 
+import com.newrelic.agent.android.NewRelic;
+
 import net.sharathkumar.android.apps.knowthyrepresentative.KnowThyRepresentativeApplication;
+import net.sharathkumar.android.utils.ratings.RateThisApp;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -47,5 +50,21 @@ public class GenericHelper {
             }
         });
 	}
+	
+	// Setup Rate This App functionality
+	public static void rateThisApp(Activity invokingActivity) {
+	    try {
+	        RateThisApp.appLaunched(invokingActivity, "Know Thy Representative", "net.sharathkumar.android.apps.knowthyrepresentative");
+	        RateThisApp.setDaysUntilPrompt(0);
+	        RateThisApp.setLaunchesUntilPrompt(2);
+	    } catch (Exception err) {
+	        Log.e("Exception @ MainActivity.rateThisApp()", err.getLocalizedMessage());
+	    }
+	}
+	
+	// Setup New Relic For App Diagnostics
+	public static void setupDiagnostics(Activity invokingActivity) {
+		NewRelic.withApplicationToken("AA2efab189734a111bc2d8af7699967f939b355281").start(invokingActivity.getApplication());
+	}	
 
 }
