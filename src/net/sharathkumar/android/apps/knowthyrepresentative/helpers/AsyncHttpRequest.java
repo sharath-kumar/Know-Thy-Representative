@@ -6,17 +6,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import net.sharathkumar.android.apps.knowthyrepresentative.KnowThySenatorApplicationContext;
+import net.sharathkumar.android.apps.knowthyrepresentative.KnowThySenatorApplication;
 import net.sharathkumar.android.apps.knowthyrepresentative.activities.ViewRepresentativeInformationActivity;
 import net.sharathkumar.android.apps.knowthyrepresentative.actors.Representative;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-
+import org.json.JSONException;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -24,12 +24,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class AsyncHttpRequest extends AsyncTask<String, Void, String> implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	private String outputOfHttpRequest = "";
 	private ArrayList<Representative> listOfRepresentatives = new ArrayList<Representative>();
 	private String UrlToQuery = "http://whoismyrepresentative.com/getall_mems.php?output=json&zip=";
 	private Activity invokingActivity;
@@ -42,16 +38,8 @@ public class AsyncHttpRequest extends AsyncTask<String, Void, String> implements
 	public void processRequest() {
 		execute(UrlToQuery);
 	}
-	
-	public String getOutput() {
-		return outputOfHttpRequest;
-	}
 
-	public void setOutput(String outputOfHttpRequest) {
-		this.outputOfHttpRequest = outputOfHttpRequest;
-	}
-
-	public static String GET(String url){
+	public String GET(String url) {
         InputStream inputStream = null;
         StringBuffer returnValue = new StringBuffer();
         try {
@@ -85,7 +73,7 @@ public class AsyncHttpRequest extends AsyncTask<String, Void, String> implements
     }
  
     public boolean isConnected(){
-        ConnectivityManager connMgr = (ConnectivityManager) KnowThySenatorApplicationContext.getContext().getSystemService(Activity.CONNECTIVITY_SERVICE);
+        ConnectivityManager connMgr = (ConnectivityManager) KnowThySenatorApplication.getContext().getSystemService(Activity.CONNECTIVITY_SERVICE);
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
             if (networkInfo != null && networkInfo.isConnected()) 
                 return true;
@@ -94,18 +82,60 @@ public class AsyncHttpRequest extends AsyncTask<String, Void, String> implements
     }
 
 	protected String doInBackground(String... urls) {
-		return GET(urls[0]);
+		
+		if(isConnected()) {
+			return GET(urls[0]);	
+		}
+		else {
+			return "";
+		}
+		
 	}
 
 	protected void onPostExecute(String result) {
-		setOutput(result);
-		listOfRepresentatives = ResultsParser.parseJson(result);
-				
-		Intent displayResultsPageIntent = new Intent(invokingActivity, ViewRepresentativeInformationActivity.class) ;
-		displayResultsPageIntent.putExtra("LIST_OF_REPRESENTATIVES", listOfRepresentatives);
-		invokingActivity.startActivity(displayResultsPageIntent) ;
-		
         Log.d("AsyncHttpRequest.onPostExecute() :: result", result);
+		
+		if(result!=null && result.length()>0) {	
+			try {
+				
+				listOfRepresentatives = ResultsParser.parseJson(result);
+				Intent displayResultsPageIntent = new Intent(invokingActivity, ViewRepresentativeInformationActivity.class) ;
+				displayResultsPageIntent.putExtra("LIST_OF_REPRESENTATIVES", listOfRepresentatives) ;
+				invokingActivity.startActivity(displayResultsPageIntent) ;			
+				
+			} catch(JSONException err) {
+				displayErrorMessage("Unable to retrieve data." +
+									"\n\nPlease try a different Zipcode!");
+				
+			} catch(Exception err) {
+				displayErrorMessage("Something went terribly wrong." +
+									"\n\nPlease try again in a few minutes!");
+			}
+					
+		}
+		else {
+			displayErrorMessage("No Internet Connectivity." +
+								"\n\nPlease enable internet connectivity and try again!");
+		}
    }
+	
+	public void displayErrorMessage(String messageToDisplay) {
+		Log.d("AsyncHttpRequest.displayErrorMessage() :: messageToDisplay", messageToDisplay);
+		
+        AlertDialog.Builder errorAlertMessage  = new AlertDialog.Builder(invokingActivity);
+
+        errorAlertMessage.setMessage(messageToDisplay);
+        errorAlertMessage.setTitle("Ooopsie!!!");
+        errorAlertMessage.setPositiveButton("OK", null);
+        errorAlertMessage.setCancelable(true);
+        errorAlertMessage.create().show();
+
+        errorAlertMessage.setPositiveButton("Ok",
+            new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                	// For now, do nothing!
+            }
+        });
+	}
 
 }

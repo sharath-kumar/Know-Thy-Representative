@@ -35,8 +35,7 @@ public class RepresentativeInfoFragment extends Fragment {
 			bindName(fragmentTemp, R.id.representative_details_name, repObjTemp.getDistrict(), repObjTemp.getName());
 			bindPhoneCall(fragmentTemp, R.id.representative_details_phone, repObjTemp.getPhone());
 			bindOpenWebsite(fragmentTemp, R.id.representative_details_website, repObjTemp.getWebsite());
-			bindShareButtons(fragmentTemp, R.id.share_twitter);
-			bindShareButtons(fragmentTemp, R.id.share_facebook);
+			bindShareButton(fragmentTemp, repObjTemp, R.id.share_with_friends);
 		}
 		
 		return fragmentTemp;		
@@ -44,16 +43,24 @@ public class RepresentativeInfoFragment extends Fragment {
 	
 	public void bindName(View fragmentViewInput, int fieldName, String districtInput, String nameInput) {
 		TextView fieldOnScreenTemp;
-
+		
+		fieldOnScreenTemp = (TextView) fragmentViewInput.findViewById(fieldName);
+		if(fieldOnScreenTemp!=null) {
+			fieldOnScreenTemp.setText(formattedNameToBeDisplayOnScreen(districtInput, nameInput));
+		}
+	}
+	
+	public String formattedNameToBeDisplayOnScreen(String districtInput, String nameInput) {
+		String returnValue = "";
+		
 		String prependText = "Rep. " ;
 		if(districtInput.equalsIgnoreCase("Junior Seat") || districtInput.equalsIgnoreCase("Senior Seat")) {
 			prependText = "Sen. ";
 		}
 		
-		fieldOnScreenTemp = (TextView) fragmentViewInput.findViewById(fieldName);
-		if(fieldOnScreenTemp!=null) {
-			fieldOnScreenTemp.setText(prependText + nameInput);
-		}
+		returnValue = prependText + nameInput;
+		
+		return returnValue;
 	}
 	
 	public void bindPartyImage(View fragmentViewInput, int fieldName, String valueToBind) {
@@ -97,35 +104,30 @@ public class RepresentativeInfoFragment extends Fragment {
 		}
 	}
 	
-	public void bindShareButtons(View fragmentViewInput, int fieldName) {
+	public void bindShareButton(View fragmentViewInput, final Representative repObj, int fieldName) {
 		Button fieldOnScreenTemp;
 		fieldOnScreenTemp = (Button) fragmentViewInput.findViewById(fieldName);
 		if(fieldOnScreenTemp!=null) {
 			fieldOnScreenTemp.setOnClickListener(new OnClickListener() {
 				  public void onClick(View v) {
 					//create the send intent
-					  Intent shareIntent = 
-					   new Intent(android.content.Intent.ACTION_SEND);
+					Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
 
-					  //set the type
-					  shareIntent.setType("text/plain");
+					//set the type
+					shareIntent.setType("text/plain");
 
-					  //add a subject
-					  shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Testing Extra Subject!");
+					//build the body of the message to be shared
+					String shareMessage = "Contact "  + formattedNameToBeDisplayOnScreen(repObj.getParty(), repObj.getName() 
+							  							+ "\n at " + repObj.getPhone() 
+							  							+ "\n or " + repObj.getWebsite());
 
-					  //build the body of the message to be shared
-					  String shareMessage = "Testing Share Functionality";
+					//add the message
+					shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
 
-					  //add the message
-					  shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
-
-					  //start the chooser for sharing
-					  startActivity(Intent.createChooser(shareIntent, "Get Support For Your Cause!"));
-
-
+					//start the chooser for sharing
+					startActivity(Intent.createChooser(shareIntent, "Rally Support For Your Cause!"));
 				  }
 				});
 		}
-	}
-	
+	}	
 }

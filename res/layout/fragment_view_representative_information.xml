@@ -1,96 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android" 
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" 
+    android:layout_height="match_parent"
     android:background="@drawable/resultspageborder"
-    >
+    android:orientation="vertical"
+    android:stretchColumns="1"
+    android:padding="30dp" >
 
-    <TableRow
+    <TableRow 
         android:id="@+id/tableRow1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:paddingTop="50dip">
-        
-	    <ImageView
-	        android:id="@+id/representative_details_party"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:gravity="center"
-	        android:contentDescription="@string/party_type"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-	    
+    	android:paddingTop="50dp"
+    	android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/representative_details_party"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/party_type"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </TableRow>
 
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:paddingTop="50dip">    
-        
-	    <TextView
-	        android:id="@+id/representative_details_name"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:gravity="center"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-	</TableRow>
-	
-    
-    <TableRow
+    <TableRow 
+        android:id="@+id/tableRow2"    	
+        android:paddingTop="50dp"
+    	android:gravity="center" >
+
+        <TextView
+            android:id="@+id/representative_details_name"
+			android:layout_weight="1"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow 
         android:id="@+id/tableRow3"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:paddingTop="50dip">  
+        android:paddingTop="50dp"
+    	android:gravity="center" >
         
-	    <Button
-	        android:id="@+id/representative_details_phone"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
-	        android:gravity="center"
-	        android:text="@string/call_me" />    
-	
-	    <Button
-	        android:id="@+id/representative_details_website"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
-	        android:gravity="center"
-	        android:text="@string/contact_me" />  
-	        
-	</TableRow>
-	
-    <TableRow
-        android:id="@+id/tableRow4"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:paddingTop="50dip">  
-        
-	    <Button
-	        android:id="@+id/share_twitter"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
-	        android:gravity="center"
-	        android:text="@string/share_twitter" />    
-	
-	    <Button
-	        android:id="@+id/share_facebook"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
-	        android:gravity="center"
-	        android:text="@string/share_facebook" />  
-	        
-	</TableRow>    
-    
+        <Button
+            android:id="@+id/representative_details_website"
+			android:layout_weight="1"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+            android:text="@string/contact_me" />
+
+        <Button
+            android:id="@+id/representative_details_phone"
+			android:layout_weight="1"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+            android:text="@string/call_me" />
+
+    </TableRow>
+
+    <TableRow 
+        android:id="@+id/tableRow4" 
+        android:paddingTop="50dp"
+    	android:gravity="center" >
+
+        <Button
+            android:id="@+id/share_with_friends"
+			android:layout_weight="1"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+            android:text="@string/share_generic" />
+    </TableRow>
+
 </TableLayout>

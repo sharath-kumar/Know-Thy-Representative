@@ -3,17 +3,17 @@ package net.sharathkumar.android.apps.knowthyrepresentative;
 import android.app.Application;
 import android.content.Context;
 
-public class KnowThySenatorApplicationContext extends Application {
+public class KnowThySenatorApplication extends Application {
 	
-    private static Context gameContext;
+    private static Context applicationContext;
     
     public void onCreate() {
         super.onCreate();
-        gameContext = getApplicationContext(); 
+        applicationContext = getApplicationContext(); 
     }
 
     public static Context getContext() {
-        return gameContext;
+        return applicationContext;
     }
 
 }

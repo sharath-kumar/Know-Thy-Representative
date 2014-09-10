@@ -5,16 +5,12 @@ import net.sharathkumar.android.apps.knowthyrepresentative.actors.Representative
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.util.Log;
 
 public class ResultsParser {
 	
-	public static ArrayList<Representative> parseJson(String dataToParse) {
+	public static ArrayList<Representative> parseJson(String dataToParse) throws JSONException {
 		ArrayList<Representative> returnValue = new ArrayList<Representative>();
-		
-		try {
-			
 			JSONObject resultsJson = new JSONObject(dataToParse);
 			JSONArray represenatives = resultsJson.getJSONArray("results");
 			
@@ -23,10 +19,8 @@ public class ResultsParser {
 				returnValue.add(new Representative(nodeTemp));				
 			}
 			
-		} catch (JSONException err) {
-			Log.e("ResultsParser.parseJson()", err.getLocalizedMessage());
-		}
-				
+			Log.d("ResultsParser.parseJson()", ""+returnValue);
+			
 		return returnValue;
 	}
 
