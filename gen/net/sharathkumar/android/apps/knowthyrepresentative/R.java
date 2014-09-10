@@ -1086,7 +1086,7 @@ containing a value of this type.
         public static final int AdvertisementRegion=0x7f050040;
         public static final int EnterZipLabel=0x7f05003f;
         public static final int RelativeLayout1=0x7f05003c;
-        public static final int SearchForSenatorButton=0x7f05003e;
+        public static final int SearchForRepresentativeButton=0x7f05003e;
         public static final int ZipCodeEntered=0x7f05003d;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
@@ -1222,7 +1222,7 @@ containing a value of this type.
     public static final class string {
         public static final int EmptySpace=0x7f0a0012;
         public static final int EnterZipLabel=0x7f0a0011;
-        public static final int FindMySenator=0x7f0a0010;
+        public static final int FindMyRepresentative=0x7f0a0010;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0a0001;

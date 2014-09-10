@@ -15,7 +15,7 @@
 
     <application
         android:allowBackup="true"
-        android:name="net.sharathkumar.android.apps.knowthyrepresentative.KnowThySenatorApplication"
+        android:name="net.sharathkumar.android.apps.knowthyrepresentative.KnowThyRepresentativeApplication"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light" >

@@ -3,7 +3,7 @@ package net.sharathkumar.android.apps.knowthyrepresentative;
 import android.app.Application;
 import android.content.Context;
 
-public class KnowThySenatorApplication extends Application {
+public class KnowThyRepresentativeApplication extends Application {
 	
     private static Context applicationContext;
     

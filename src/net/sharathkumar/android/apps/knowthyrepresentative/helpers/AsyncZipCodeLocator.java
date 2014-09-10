@@ -90,7 +90,11 @@ public class AsyncZipCodeLocator extends AsyncTask<String, Integer, String> {
 	protected String doInBackground(String... urls) {
 		String zipCodeFound = "" ;
 		try {
-			zipCodeFound = findZipCodeBasedOnLocation();
+			// Not throwing any errors if network connectivity checking fails, as this is supposed 
+			// to be totally "hidden" feature
+			if(GenericHelper.isNetworkConnected()) {
+				zipCodeFound = findZipCodeBasedOnLocation();	
+			}
 		} catch(Exception err) {
 			Log.e("AsyncZipCodeLocator.doInBackground()", err.getLocalizedMessage());
 		}
@@ -101,15 +105,16 @@ public class AsyncZipCodeLocator extends AsyncTask<String, Integer, String> {
 	protected void onPostExecute(String result) {
 		Log.d("AsyncZipCodeLocator.onPostExecute()", "Entered");
         
-        EditText zipCodeEntryField = (EditText) invokingActivity.findViewById(R.id.ZipCodeEntered);	
-		Editable zipCodeValue = (Editable) zipCodeEntryField.getText();
+        EditText zipCodeEntryField = (EditText) invokingActivity.findViewById(R.id.ZipCodeEntered);
+        
+        if(zipCodeEntryField!=null) {
+        	Editable zipCodeValue = (Editable) zipCodeEntryField.getText();
+    		if(zipCodeValue!=null && zipCodeValue.length() == 0) {
+    			zipCodeEntryField.setText(getZipCode());
+    		}
+        }
 		
-		Log.d("AsyncZipCodeLocator.onPostExecute() :: ZipCode", getZipCode());
-		
-		if(zipCodeValue!=null && zipCodeValue.length() == 0) {
-			zipCodeEntryField.setText(getZipCode());
-		}
-		
+		Log.d("AsyncZipCodeLocator.onPostExecute() :: ZipCode", getZipCode());		
    }
 
 }

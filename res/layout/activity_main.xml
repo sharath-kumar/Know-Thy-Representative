@@ -16,7 +16,7 @@
             android:id="@+id/ZipCodeEntered"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/SearchForSenatorButton"
+            android:layout_above="@+id/SearchForRepresentativeButton"
             android:layout_alignParentLeft="true"
             android:ems="10"
             android:inputType="number" >
@@ -35,15 +35,15 @@
             android:text="@string/EnterZipLabel" />
 
         <Button
-            android:id="@+id/SearchForSenatorButton"
+            android:id="@+id/SearchForRepresentativeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="16dp"
-            android:onClick="searchForSenator"
-            android:text="@string/FindMySenator" />
+            android:onClick="searchForRepresentativeButtonClicked"
+            android:text="@string/FindMyRepresentative" />
 
     </RelativeLayout>
 

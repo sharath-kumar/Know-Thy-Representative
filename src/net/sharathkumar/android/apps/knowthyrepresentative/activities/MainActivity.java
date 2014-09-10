@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 		automaticZipCodeFinder.processRequest();
 	}
 	
-	public void searchForSenator(View buttonClicked) {
+	public void searchForRepresentativeButtonClicked(View buttonClicked) {
 		EditText zipCodeEntryField = (EditText) findViewById(R.id.ZipCodeEntered);		
 		Editable zipCodeValue = (Editable) zipCodeEntryField.getText();
 		
