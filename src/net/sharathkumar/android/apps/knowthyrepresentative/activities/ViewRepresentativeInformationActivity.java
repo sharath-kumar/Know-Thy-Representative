@@ -1,9 +1,8 @@
 package net.sharathkumar.android.apps.knowthyrepresentative.activities;
 
 import java.util.ArrayList;
-
+import com.google.analytics.tracking.android.EasyTracker;
 import com.viewpagerindicator.CirclePageIndicator;
-
 import net.sharathkumar.android.apps.knowthyrepresentative.R;
 import net.sharathkumar.android.apps.knowthyrepresentative.actors.Representative;
 import net.sharathkumar.android.apps.knowthyrepresentative.helpers.GenericHelper;
@@ -47,5 +46,15 @@ public class ViewRepresentativeInformationActivity extends FragmentActivity {
 		
 		return fragList;
 	}
+	
+	public void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this); 
+	}
+
+	public void onStop() { 
+		super.onStop(); 
+		EasyTracker.getInstance(this).activityStop(this);
+	}	
 
 }

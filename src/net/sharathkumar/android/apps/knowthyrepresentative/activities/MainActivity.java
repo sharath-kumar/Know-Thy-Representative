@@ -1,5 +1,6 @@
 package net.sharathkumar.android.apps.knowthyrepresentative.activities;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -46,5 +47,15 @@ public class MainActivity extends Activity {
 			zipCodeEntryField.setError("Please enter a valid Zip Code.");
 		}
 	}
+	
+	public void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this); 
+	}
 
+	public void onStop() { 
+		super.onStop(); 
+		EasyTracker.getInstance(this).activityStop(this);
+	}
+	
 }

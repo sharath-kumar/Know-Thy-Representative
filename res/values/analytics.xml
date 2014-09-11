@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<resources xmlns:tools="http://schemas.android.com/tools"
+	tools:ignore="TypographyDashes">
+
+  <!--App Name-->
+  <string name="ga_appName">Know Thy Representative</string>
+    	
+  <!--Know Thy Representative Tracking Id = UA-54365137-4 -->
+  <string name="ga_trackingId">UA-54365137-4</string>
+
+  <!--Enable automatic activity tracking-->
+  <bool name="ga_autoActivityTracking">true</bool>
+
+  <!--Enable automatic exception tracking-->
+  <bool name="ga_reportUncaughtExceptions">true</bool>
+
+  <!--Dispatch Period = 5 seconds-->
+  <integer name="ga_dispatchPeriod">5</integer>
+  
+</resources>
